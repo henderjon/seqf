@@ -9,9 +9,25 @@ import (
 
 func loopFloat() {
 	start, stop, incr := parseFloats(flag.Arg(0), flag.Arg(1), incr)
-	for i := start; shouldStopFloat(i, stop, start < stop); i += incr {
+
+	i := start
+	for shouldStopFloat(i, stop, start < stop) {
 		fmt.Fprintf(os.Stdout, fmtString, i)
+		i += incr
+
+		if !shouldStopFloat(i, stop, start < stop) {
+			break
+		}
+
+		fmt.Fprint(os.Stdout, delim)
 	}
+
+	// for i := start; shouldStopFloat(i, stop, start < stop); i += incr {
+	// 	fmt.Fprintf(os.Stdout, fmtString, i)
+	// }
+
+	fmt.Fprint(os.Stdout, "\n")
+
 }
 
 func shouldStopFloat(curr, stop float64, up bool) bool {

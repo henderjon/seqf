@@ -27,9 +27,7 @@ func loopInt() {
 	// 	fmt.Fprint(os.Stdout, delim)
 	// }
 
-	// if delim != "\n" {
 	fmt.Fprint(os.Stdout, "\n")
-	// }
 
 }
 
